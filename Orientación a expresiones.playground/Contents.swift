@@ -1,3 +1,11 @@
+func dniLetters() -> [Character] {
+    return ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
+}
+
+func mod(of dni: Int) -> Int {
+    return dni % 23
+}
+
 func characters(of dni: String) -> [Character] {
     if dni.characters.count == 8 {
         return ["0"] + Array(dni.characters)
@@ -11,15 +19,11 @@ func checkLength(of dni: [Character]) -> Bool {
 }
 
 func checkLetter(of dni: [Character]) -> Bool {
-    let letters: [Character] = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
-    
     guard let number = Int(String(dni[0...7])) else {
         return false
     }
     
-    let mod = number % 23
-    
-    let letter = letters[mod]
+    let letter = dniLetters()[mod(of: number)]
     
     if dni[8] != letter {
         return false
