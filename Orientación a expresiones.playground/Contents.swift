@@ -6,16 +6,14 @@ func characters(of dni: String) -> [Character] {
     return Array(dni.characters)
 }
 
-func validate(_ dni: [Character]) -> Bool {
+func checkLength(of dni: [Character]) -> Bool {
+    return dni.count == 9
+}
+
+func checkLetter(of dni: [Character]) -> Bool {
     let letters: [Character] = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
     
-    if dni.count != 9 {
-        return false
-    }
-    
-    let dniNumber = String(dni[0...7])
-    
-    guard let number = Int(dniNumber) else {
+    guard let number = Int(String(dni[0...7])) else {
         return false
     }
     
@@ -28,6 +26,11 @@ func validate(_ dni: [Character]) -> Bool {
     }
     
     return true
+
+}
+
+func validate(_ dni: [Character]) -> Bool {
+    return checkLength(of: dni) && checkLetter(of: dni)
 }
 
 func check(dni: String) -> Bool {
