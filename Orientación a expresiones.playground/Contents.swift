@@ -2,6 +2,10 @@ func dniLetters() -> [Character] {
     return ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
 }
 
+func letter(_ mod: Int) -> Character {
+    return dniLetters()[mod]
+}
+
 func mod(of dni: Int) -> Int {
     return dni % 23
 }
@@ -23,14 +27,7 @@ func checkLetter(of dni: [Character]) -> Bool {
         return false
     }
     
-    let letter = dniLetters()[mod(of: number)]
-    
-    if dni[8] != letter {
-        return false
-    }
-    
-    return true
-
+    return dni[8] == letter(mod(of: number))
 }
 
 func validate(_ dni: [Character]) -> Bool {
